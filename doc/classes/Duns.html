@@ -1,0 +1,265 @@
+<?xml version="1.0" encoding="iso-8859-1"?>
+<!DOCTYPE html 
+     PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+     "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+<head>
+  <title>Class: Duns</title>
+  <meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1" />
+  <meta http-equiv="Content-Script-Type" content="text/javascript" />
+  <link rel="stylesheet" href=".././rdoc-style.css" type="text/css" media="screen" />
+  <script type="text/javascript">
+  // <![CDATA[
+
+  function popupCode( url ) {
+    window.open(url, "Code", "resizable=yes,scrollbars=yes,toolbar=no,status=no,height=150,width=400")
+  }
+
+  function toggleCode( id ) {
+    if ( document.getElementById )
+      elem = document.getElementById( id );
+    else if ( document.all )
+      elem = eval( "document.all." + id );
+    else
+      return false;
+
+    elemStyle = elem.style;
+    
+    if ( elemStyle.display != "block" ) {
+      elemStyle.display = "block"
+    } else {
+      elemStyle.display = "none"
+    }
+
+    return true;
+  }
+  
+  // Make codeblocks hidden by default
+  document.writeln( "<style type=\"text/css\">div.method-source-code { display: none }</style>" )
+  
+  // ]]>
+  </script>
+
+</head>
+<body>
+
+
+
+    <div id="classHeader">
+        <table class="header-table">
+        <tr class="top-aligned-row">
+          <td><strong>Class</strong></td>
+          <td class="class-name-in-header">Duns</td>
+        </tr>
+        <tr class="top-aligned-row">
+            <td><strong>In:</strong></td>
+            <td>
+                <a href="../files/lib/duns-lookup_rb.html">
+                lib/duns-lookup.rb
+                </a>
+        <br />
+            </td>
+        </tr>
+
+        <tr class="top-aligned-row">
+            <td><strong>Parent:</strong></td>
+            <td>
+                Object
+            </td>
+        </tr>
+        </table>
+    </div>
+  <!-- banner header -->
+
+  <div id="bodyContent">
+
+
+
+  <div id="contextContent">
+
+    <div id="description">
+      <h1>Synopsis</h1>
+<p>
+The <a href="Duns.html">Duns</a> library provides a small wrapper around
+the Dun &amp; Bradstreet website&#8216;s advanced search functionality.
+Currently it only implements searching for company by DUNS number.
+</p>
+<h2>Example</h2>
+<pre>
+ require 'rubygems'
+ require 'kdonovan-duns-lookup'
+
+ Duns.lookup_duns( *invalid_number* )
+    # =&gt; nil
+ Duns.lookup_duns( *some_valid_number* )
+    # =&gt; {:name =&gt; *a_name*, :address =&gt; *an_address*}
+</pre>
+
+    </div>
+
+
+   </div>
+
+    <div id="method-list">
+      <h3 class="section-bar">Methods</h3>
+
+      <div class="name-list">
+      <a href="#M000006">enforce_duns_formatting</a>&nbsp;&nbsp;
+      <a href="#M000004">extract_address</a>&nbsp;&nbsp;
+      <a href="#M000005">extract_name</a>&nbsp;&nbsp;
+      <a href="#M000003">extract_search_results</a>&nbsp;&nbsp;
+      <a href="#M000001">lookup_duns</a>&nbsp;&nbsp;
+      <a href="#M000002">update_advanced_search_url</a>&nbsp;&nbsp;
+      </div>
+    </div>
+
+  </div>
+
+
+    <!-- if includes -->
+
+    <div id="section">
+
+
+
+
+
+      
+
+
+    <!-- if method_list -->
+    <div id="methods">
+      <h3 class="section-bar">Public Class methods</h3>
+
+      <div id="method-M000001" class="method-detail">
+        <a name="M000001"></a>
+
+        <div class="method-heading">
+          <a href="Duns.src/M000001.html" target="Code" class="method-signature"
+            onclick="popupCode('Duns.src/M000001.html');return false;">
+          <span class="method-name">lookup_duns</span><span class="method-args">(number)</span>
+          </a>
+        </div>
+      
+        <div class="method-description">
+          <p>
+Look up a given DUNS number in the D&amp;B database. If the number is
+found, returns a hash with :name and :address keys. Otherwise, returns nil.
+</p>
+        </div>
+      </div>
+
+      <div id="method-M000002" class="method-detail">
+        <a name="M000002"></a>
+
+        <div class="method-heading">
+          <a href="Duns.src/M000002.html" target="Code" class="method-signature"
+            onclick="popupCode('Duns.src/M000002.html');return false;">
+          <span class="method-name">update_advanced_search_url</span><span class="method-args">()</span>
+          </a>
+        </div>
+      
+        <div class="method-description">
+          <p>
+Updates the internal URL used as the base for advanced searches.
+</p>
+<p>
+The D&amp;B website uses lots of extraneous (to us) URL params, and I have
+no idea what they all mean. If the base URL stops working, this method will
+try to set a new one by visiting the main page and finding &amp; clicking
+an Advanced Search link.
+</p>
+<p>
+This is mostly a precaution, but if searches stop working a good first bet
+would be to try running this method. If search is still broken, something
+actually changed in the D&amp;B HTML and we&#8216;ll need to retool the
+gem.
+</p>
+        </div>
+      </div>
+
+      <h3 class="section-bar">Protected Class methods</h3>
+
+      <div id="method-M000006" class="method-detail">
+        <a name="M000006"></a>
+
+        <div class="method-heading">
+          <a href="Duns.src/M000006.html" target="Code" class="method-signature"
+            onclick="popupCode('Duns.src/M000006.html');return false;">
+          <span class="method-name">enforce_duns_formatting</span><span class="method-args">(orig_number)</span>
+          </a>
+        </div>
+      
+        <div class="method-description">
+          <p>
+Strip out non-numeric characters, and raise error if remaining number is
+still invalid
+</p>
+        </div>
+      </div>
+
+      <div id="method-M000004" class="method-detail">
+        <a name="M000004"></a>
+
+        <div class="method-heading">
+          <a href="Duns.src/M000004.html" target="Code" class="method-signature"
+            onclick="popupCode('Duns.src/M000004.html');return false;">
+          <span class="method-name">extract_address</span><span class="method-args">(td)</span>
+          </a>
+        </div>
+      
+        <div class="method-description">
+          <p>
+Retrieve an address from the proper D&amp;B HTML for the td element
+</p>
+        </div>
+      </div>
+
+      <div id="method-M000005" class="method-detail">
+        <a name="M000005"></a>
+
+        <div class="method-heading">
+          <a href="Duns.src/M000005.html" target="Code" class="method-signature"
+            onclick="popupCode('Duns.src/M000005.html');return false;">
+          <span class="method-name">extract_name</span><span class="method-args">(td)</span>
+          </a>
+        </div>
+      
+        <div class="method-description">
+          <p>
+Retrieve a name from the proper D&amp;B HTML for the td element
+</p>
+        </div>
+      </div>
+
+      <div id="method-M000003" class="method-detail">
+        <a name="M000003"></a>
+
+        <div class="method-heading">
+          <a href="Duns.src/M000003.html" target="Code" class="method-signature"
+            onclick="popupCode('Duns.src/M000003.html');return false;">
+          <span class="method-name">extract_search_results</span><span class="method-args">(page)</span>
+          </a>
+        </div>
+      
+        <div class="method-description">
+          <p>
+Given a search page, extract the results
+</p>
+        </div>
+      </div>
+
+
+    </div>
+
+
+  </div>
+
+
+<div id="validator-badges">
+  <p><small><a href="http://validator.w3.org/check/referer">[Validate]</a></small></p>
+</div>
+
+</body>
+</html>

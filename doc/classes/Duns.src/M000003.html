@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="iso-8859-1"?>
+<!DOCTYPE html 
+     PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+     "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html>
+<head>
+  <title>extract_search_results (Duns)</title>
+  <meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1" />
+  <link rel="stylesheet" href="../.././rdoc-style.css" type="text/css" media="screen" />
+</head>
+<body class="standalone-code">
+  <pre><span class="ruby-comment cmt"># File lib/duns-lookup.rb, line 70</span>
+  <span class="ruby-keyword kw">def</span> <span class="ruby-keyword kw">self</span>.<span class="ruby-identifier">extract_search_results</span>(<span class="ruby-identifier">page</span>)
+    <span class="ruby-keyword kw">return</span> <span class="ruby-keyword kw">nil</span> <span class="ruby-keyword kw">if</span> <span class="ruby-identifier">page</span>.<span class="ruby-identifier">search</span>(<span class="ruby-value str">'div.text-red'</span>).<span class="ruby-identifier">size</span> <span class="ruby-operator">&gt;</span> <span class="ruby-value">0</span>
+    
+    <span class="ruby-comment cmt"># Given a DUNS number search, we only expect one result.  For other search types (when/if implemented), loop over all TRs returned in this table</span>
+    <span class="ruby-identifier">company_name</span>    = <span class="ruby-identifier">extract_name</span>( <span class="ruby-identifier">page</span>.<span class="ruby-identifier">search</span>(<span class="ruby-value str">&quot;//table[@id='SearchResultsTable']//tr[1]/td[2]&quot;</span>) )
+    <span class="ruby-identifier">company_address</span> = <span class="ruby-identifier">extract_address</span>( <span class="ruby-identifier">page</span>.<span class="ruby-identifier">search</span>(<span class="ruby-value str">&quot;//table[@id='SearchResultsTable']//tr[1]/td[3]&quot;</span>) )
+
+    {<span class="ruby-identifier">:name</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-identifier">company_name</span>, <span class="ruby-identifier">:address</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-identifier">company_address</span>}
+  <span class="ruby-keyword kw">end</span></pre>
+</body>
+</html>
