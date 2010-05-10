@@ -5,7 +5,7 @@ This provides a small wrapper around the Dun & Bradstreet website to retrieve bu
 == Usage
 
   require 'rubygems'
-  require 'kdonovan-duns-lookup'
+  require 'duns-lookup'
 
   Duns.lookup_duns( *invalid_number* )
     # => nil
