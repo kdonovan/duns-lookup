@@ -27,7 +27,7 @@ class Duns
   @@dnb_advanced_search = 'https://smallbusiness.dnb.com/ePlatform/servlet/AdvancedCompanySearch?storeId=10001&catalogId=70001?storeId=10001&catalogId=70001'
 
   # Our Mechanize agent
-  @@agent = WWW::Mechanize.new
+  @@agent = Mechanize.new
   @@agent.user_agent_alias = 'Windows IE 7'
 
   ####
