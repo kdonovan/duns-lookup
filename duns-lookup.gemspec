@@ -11,7 +11,7 @@ Gem::Specification.new do |s|
   s.authors = ["Kali Donovan"]
   s.date = %q{2010-05-10}
   s.description = %q{Provides a small wrapper around the Dun & Bradstreet website to retrieve business information from DUNS numbers.}
-  s.email = %q{kali.donovan@gmail.com}
+  s.email = %q{kali@deviantech.com}
   s.extra_rdoc_files = [
     "LICENSE",
      "README.rdoc"
@@ -46,7 +46,7 @@ Gem::Specification.new do |s|
   s.homepage = %q{http://github.com/kdonovan/duns-lookup}
   s.rdoc_options = ["--charset=UTF-8"]
   s.require_paths = ["lib"]
-  s.rubygems_version = %q{1.3.5}
+  s.rubygems_version = %q{1.3.6}
   s.summary = %q{Wrapper for looking up Dun & Bradstreet numbers (DUNS)}
   s.test_files = [
     "spec/duns-lookup_spec.rb",

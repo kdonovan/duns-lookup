@@ -7,7 +7,7 @@ begin
     gem.name = "duns-lookup"
     gem.summary = "Wrapper for looking up Dun & Bradstreet numbers (DUNS)"
     gem.description = %Q{Provides a small wrapper around the Dun & Bradstreet website to retrieve business information from DUNS numbers.}
-    gem.email = "kali.donovan@gmail.com"
+    gem.email = "kali@deviantech.com"
     gem.homepage = "http://github.com/kdonovan/duns-lookup"
     gem.authors = ["Kali Donovan"]
     gem.add_development_dependency "rspec"

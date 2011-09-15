@@ -8,7 +8,7 @@ end
 #
 # == Example
 #  require 'rubygems'
-#  require 'kdonovan-duns-lookup'
+#  require 'duns-lookup'
 #
 #  Duns.lookup_duns( *invalid_number* )
 #     # => nil
@@ -36,8 +36,10 @@ class Duns
   # Otherwise, returns nil.
   #  
   def self.lookup_duns(number)
+    formatted_number = enforce_duns_formatting(number) # Abort early if invalid format
+    
     form = @@agent.get( @@dnb_advanced_search ).form('DunsSearchForm')
-    form.dunsNumber = enforce_duns_formatting(number)
+    form.dunsNumber = formatted_number
     page = @@agent.submit(form)
     
     extract_search_results(page)
